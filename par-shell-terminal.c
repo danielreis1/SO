@@ -1,4 +1,5 @@
 
+#include "par-shell.h" // fazer par-shell.h
 #include "commandlinereader.h"
 #include <stdio.h>
 #include <stdlib.h>
@@ -16,15 +17,39 @@ int main(int argc, char * argv[]) {
 
 
 	/* Open fifo for write */
-	int fd = open(PIPENAME, O_WRONLY);
-	if(fd == -1) {
+	FILE* fp = fopen(PIPENAME, "w");
+	if(fp == NULL) {
 		fprintf(stderr, "Cannot open fifo");
 		return EXIT_FAILURE;
 	}
-	write(fd, "fibonacci 123", strlen("fibonacci 123"));
-	puts("success writing");
+	while(1) {
+		nTokens = readLineArguments(args, MAX, buf, BUFF); /* Reads arguments from terminal*/
+		if(!nTokens) { /* Checks for error with commands */
+			fprintf(stderr,"Invalid path name \n");
 
+		} else if (nTokens == -1) {
+			fprintf(fp, "fibonacci 11");
+			exit(EXIT_FAILURE);
+		} else {
+			if(!strcmp(args[0],"exit")) {
+				// verificar o que falta
+				FlushFile(fp);
+				fclose(fp);
+				exit(EXIT_FAILURE);
+			else if(!strcmp(args[0],"stats")) {
+				// imprime no ecra onde corre o par-shell-terminal
+
+			} else if (!strcmp(args[0],"exit-global")) {
+				// permite terminar par-shell e todos os terminais
+
+			} else {
+				int i;
+				for (i= 0; i < len(args); i++)
+					fprintf(fp,args[i]);
+				puts("success writing");
+				FlushFile(fp);
+			}
 	/* Write each string in turn */
-	close(fd);
+	}
 	return 0;
 }

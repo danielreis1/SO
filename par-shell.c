@@ -18,7 +18,7 @@
 #include "list.h"
 
 #define MAX 7 /* Maximum number os terminal command allowed */
-#define MAXPAR 2 /* Maximum number of processes allowed */
+#define MAXPAR 3 /* Maximum number of processes allowed */
 #define MAXBUFFER 50
 #define FILENAME "log.txt" /* Log file name */
 #define PIPENAME "/tmp/par-shell-in" /* Name of the pipe */
@@ -72,6 +72,7 @@ char buf[BUFF];
 /* Function to run by a thread */
 void * tarefaMonitora(){
 	while(1){
+//  tratamento de signal SIGINT
 
 		mutexLock(&sem);
 		while(childRunning == 0){
@@ -202,19 +203,19 @@ int main(int argc, char * argv[]){
 
 	/* ------------------------------------- INITIALIZATION AREA ----------------------------------- */
 	/* Initialize file */
-	if((fp = fopen(FILENAME,"a+"))==NULL){
+	if((fp = fopen(FILENAME, "a+")) == NULL) {
 		fprintf(stderr,"Error opening file");
 		exit(EXIT_FAILURE);
 	}
 
 	/* Initialize mutex */
-	if(pthread_mutex_init(&sem, NULL)){
+	if(pthread_mutex_init(&sem, NULL)) {
 		fprintf(stderr,"Error creating semaphore \n");
 		exit(EXIT_FAILURE);
 	}
 
 	/* Create thread */
-	if(pthread_create(&monitora, NULL, tarefaMonitora,NULL)){
+	if(pthread_create(&monitora, NULL, tarefaMonitora, NULL)) {
 		fprintf(stderr,"Error creating thread \n");
 		exit(EXIT_FAILURE);
 	}
@@ -237,25 +238,33 @@ int main(int argc, char * argv[]){
 
 	close(STDIN_FILENO); /* Close std_out channel */
 	dup(f); /* Redirects stdin to the file */
+
 	 /* CREATE VERIFICATION FUNCTION WITH CODE = -1 */
 	puts("Fifo Open");
 
-	while(1){
+	while(1) {
+		// BUFF = 1024
+		// char* buff[BUFF]
+
+
 		nTokens = readLineArguments(args, MAX, buf, BUFF); /* Reads arguments from terminal*/
-		printf(" arg0 : %s \n",args[0]);
-		printf(" arg1 : %s \n",args[1]);
-		printf(" arg2 : %s \n",args[2]);
-		if(nTokens == -1 || nTokens == 0){ /* Checks for error with commands */
+		printf(" arg0 : %s \n", args[0]);
+		printf(" arg1 : %s \n", args[1]);
+		printf(" arg2 : %s \n", args[2]);
+
+		if(!nTokens) { /* Checks for error with commands */
 			fprintf(stderr,"Invalid path name \n");
-			if(nTokens == -1){
+			FlushFile(stderr);
+
+		} else if (nTokens == -1) {
 				exit(EXIT_FAILURE);
-			}
-		}else{
+
+		} else {
 			/* Checks if 'exit' command was entered. If so, then the parent process will wait until all child processes are finished.
 			Otherwise new process will be creaded based on given arguments. */
-			if(!strcmp(args[0],"exit")){
-				exitRequest = 1; /* Tells the thread that 'exit' command was given */
+			if(!strcmp(args[0],"exit")) {
 
+				exitRequest = 1; /* Tells the thread that 'exit' command was given */
 				mutexLock(&sem);
 				childRunning++;
 				condSignal(&thread_condition_var); /* ----------------- Conditional Variable Signal ------------------ */
@@ -266,40 +275,42 @@ int main(int argc, char * argv[]){
 				lst_destroy(list); /* Free the list */
 				mutexDestroy(&sem); /* Destroy mutex */
 				exit(-1);
-			}else{
+
+
+			} else {
 
 					mutexLock(&sem);
 					while(childRunning>=MAXPAR){
 						condWait(&condition_var,&sem);	/* ----------------- Conditional Variable Wait ------------------ */
 					}
 					mutexUnlock(&sem);
-
 					pid = fork();
-					if(pid>=0){ /* Fork Succeeded */
+
+					if(pid >= 0){ /* Fork Succeeded */
 
 						if(pid == 0){
-							createFile(out,getpid()); /* Creates file with PID name */
+							/* Child Process */
+							createFile(out, getpid()); /* Creates file with PID name */
 							redirect = open(finalName, O_WRONLY); /* Open file */
 							close(STDOUT_FILENO); /* Close std_out channel */
 							dup(redirect); /* Redirects stdout to the file */
 							free(finalName);
-							/* Child Process */
-							execv(args[0],args);
-							fprintf(stderr,"Unable to create a process \n");
+							execv(args[0], args);
+							fprintf(stderr,"Unable to execute a process \n");
 							pthread_exit(NULL);
 							exit(EXIT_FAILURE);
-						}else{
-							/* Parent Process */
+						} else {
 
+							/* Parent Process */
 							mutexLock(&sem);/* -------------- Mutex Lock ---------------- */
 							childRunning++;
 							insert_new_process(list, pid, time(NULL)); /* adds process to the list */
 							numChilds++;
-
 							condSignal(&thread_condition_var); /* ----------------- Conditional Variable Signal ------------------ */
 							mutexUnlock(&sem); /* -------------- Mutex Unlock ---------------- */
+
 						}
-					}else{
+					} else {
 						fprintf(stderr,"Unable to create a process \n");
 						continue;
 					}
