@@ -6,7 +6,7 @@
 
 #include "par-shell.h"
 
-/* ------------------------------------------------------------ FUNCTIONS ---------------------------------------------------------*/
+
 
 /* Function to run by a thread */
 void * tarefaMonitora(){
@@ -27,7 +27,6 @@ void * tarefaMonitora(){
 				fprintf(stderr, "Error while waiting for child to finish \n");
 				exit(EXIT_FAILURE);
 			} /* Waits for the terminations of the child process */
-
 			mutexLock(&sem);	/* -------------- Mutex Lock ---------------- */
 
 			iterationSearch(fp);
@@ -58,6 +57,9 @@ int main(int argc, char * argv[]){
 
 	/* ------------------------------------- INITIALIZATION AREA ----------------------------------- */
 	/* Initialize file */
+	signal(SIGINT, sighandler);
+	signal(SIGTERM, handlerStats); // 
+
 	if((fp = fopen(FILENAME, "a+")) == NULL) {
 		fprintf(stderr,"Error opening file");
 		exit(EXIT_FAILURE);
@@ -69,12 +71,6 @@ int main(int argc, char * argv[]){
 		exit(EXIT_FAILURE);
 	}
 
-	/* Create thread */
-	if(pthread_create(&monitora, NULL, tarefaMonitora, NULL)) {
-		fprintf(stderr,"Error creating thread \n");
-		exit(EXIT_FAILURE);
-	}
-
 	/* Named Pipe */
 	unlink(PIPENAME);
 	int code = mkfifo(PIPENAME, S_IRUSR | S_IWUSR);
@@ -82,10 +78,17 @@ int main(int argc, char * argv[]){
 		fprintf(stderr, "mkfifo returned an eror \n");
 	}
 
+	/* Create thread */
+	if(pthread_create(&monitora, NULL, tarefaMonitora, NULL)) {
+		fprintf(stderr,"Error creating thread \n");
+		exit(EXIT_FAILURE);
+	}
+
+
 	/* CREATE VERIFICATION FUNCTION WITH CODE = -1*/
 
 	/* ------------------------------------- END OF INITIALIZATION AREA ----------------------------------- */
-	int f = open(PIPENAME, O_RDONLY); /* Open NamedPipe */
+	int f = open(PIPENAME,  O_CREAT | O_RDONLY, S_IRUSR | S_IWUSR); /* Open NamedPipe */
 	if(f == -1) {
 		fprintf(stderr, "Cannot open FIFO for read \n");
 		return EXIT_FAILURE;
@@ -93,14 +96,14 @@ int main(int argc, char * argv[]){
 
 	close(STDIN_FILENO); /* Close std_out channel */
 	dup(f); /* Redirects stdin to the file */
-	close(f);
+	//close(f);
 	 /* CREATE VERIFICATION FUNCTION WITH CODE = -1 */
 	puts("Fifo Open");
 
 	while(1) {
 		// BUFF = 1024
 		// char* buff[BUFF]
-		read(0, buf ,strlen(buf));
+		// read(STDIN_FILENO, buf ,strlen(buf)); // reads from pipe
 		nTokens = readLineArguments(args, MAX, buf, BUFF); /* Reads arguments from terminal*/
 		printf(" arg0 : %s \n", args[0]);
 		printf(" arg1 : %s \n", args[1]);

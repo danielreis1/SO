@@ -14,12 +14,12 @@
 
 
 #define MAX 7 /* Maximum number os terminal command allowed */
-#define MAXPAR 3 /* Maximum number of processes allowed */
+#define MAXPAR 2 /* Maximum number of processes allowed */
 #define MAXBUFFER 50
 #define FILENAME "log.txt" /* Log file name */
 #define PIPENAME "/tmp/par-shell-in" /* Name of the pipe */
 #define BUFF 1024
-
+#define PIPESIGHANDLER "/tmp/SIGHANDLER"
 
 /* ----------------------------------------------------------- GLOBAL VARIABLES --------------------------------------------------*/
 int numChilds = 0;	/* Number of child processes */
@@ -46,7 +46,6 @@ int redirect;
 int redirectPipe;
 char *finalName;
 char pidNum[5];
-
 char buf[BUFF];
 
 /* ----------------------------------------------------------- END OF GLOBAL VARIABLES -----------------------------------------------*/
@@ -61,7 +60,7 @@ void writeEndFile(FILE *fp, int execTime);
 void iterationSearch(FILE *fp);
 void FlushFile(FILE* fp);
 void createFile(FILE *fp, int processPID);
-
+void handlerSIGINT(int a);
 
 /* --------------------------- ERROR CHEKING FUNCTIONS ---------------------------------- */
 void mutexLock(pthread_mutex_t *mutex){
@@ -111,6 +110,28 @@ void FlushFile(FILE* fp){
 		fprintf(stderr, "Error flushing file");
 		exit(EXIT_FAILURE);
 	}
+}
+
+/* SIGNAL HANDLING */
+void handlerStats(int a) {
+  int stdout;
+  FILE * fp;
+  stdout = dup(1); // doubles stdout
+  close(1);
+  unlink(PIPESIGHANDLER);
+	int code = mkfifo(PIPENAME, S_IRUSR | S_IWUSR);
+	if(code == -1) {
+		fprintf(stderr, "mkfifo returned an eror \n");
+	}
+  fp = open(PIPESIGHANDLER, "w"); /* Open NamedPipe write only*/
+  dup(fp);
+	if(fp == NULL) {
+		fprintf(stderr, "Cannot open FIFO for read \n");
+		return EXIT_FAILURE;
+	}
+  iterationSearch(FILE *fp);
+  close(1);
+  dup(stdout);
 }
 
 /* --------------------------- END OF ERROR CHECKING FUNCTIONS ---------------------------------- */

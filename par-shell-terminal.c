@@ -1,57 +1,56 @@
 #include "par-shell.h"
 
-
 int main(int argc, char * argv[]) {
+	char bufer[MAXBUFFER];
 	// char stringBuffer[MAX] = "fibonacci 123";
 	// le o nome da NamedPipe da shell "argv 0 ou 1 ??"
-	int nTokens;
-	char *args[MAX];
+	// char *args[MAX];
 	/* Open fifo for write */
-	int fp = open(PIPENAME, STDOUT_FILENO);
+	printf("%s\n", argv[1]);
+	int fp = open(argv[1],  O_CREAT | O_WRONLY, S_IRUSR | S_IWUSR);
 	if(fp == -1) {
 		fprintf(stderr, "Cannot open fifo");
 		return EXIT_FAILURE;
 	}
-
 	while(1) {
+		if(fgets(bufer, MAXBUFFER, stdin) == NULL)
+			printf("error in fgets\n" );
 
-		nTokens = readLineArguments(args, MAX, buf, BUFF); /* Reads arguments from terminal*/
-		printf("%s\n",args[0]);
-
-		if(!nTokens) { /* Checks for error with commands */
-			fprintf(stderr,"Invalid path name \n");
-
-		} else if (nTokens == -1) {
-			// fprintf(fp, "fibonacci 11");
+		printf("%s\n",bufer);
+		if(!strcmp(bufer,"exit\n")) {
+			fsync(fp);
+			puts("success writing");
+			// verificar o que falta
+			close(fp);
 			exit(EXIT_FAILURE);
 
-		} else {
-			if(!strcmp(args[0],"exit")) {
-				// verificar o que falta
-				close(fp);
+		} else if(!strcmp(bufer, "stats\n")) {
+			FILE* log;
+			if((log = fopen(FILENAME,"r"))==NULL){
+				fprintf(stderr,"Error opening file");
 				exit(EXIT_FAILURE);
-
-
-			} else if(!strcmp(args[0],"stats")) {
-				// imprime no ecra onde corre o par-shell-terminal
-
-
-			} else if (!strcmp(args[0],"exit-global")) {
-				write(fp, "exit", strlen("exit") );
-				// permite terminar par-shell e todos os terminais ordeiramente
-				// apos criar log.txt e escrever no mesmo
-
-
-			} else {
-				int i;
-				for (i = 0; i < nTokens; i++) {
-					printf("maminhas\n" );
-					write(fp, args[i], strlen(args[i]));
-				}
-				puts("success writing");
 			}
-	/* Write each string in turn */
+			iterationSearch(fp);
+			// prints tempo total em execucao
+			printf("%d\n", totaltime);
+
+			// imprime no ecra onde corre o par-shell-terminal
+
+
+		} else if (!strcmp(bufer, "exit-global\n")) {
+			char* exitC = "exit\n";
+			fsync(fp);
+			write(fp, exitC, strlen(exitC));
+			puts("success writing");
+			// apos criar log.txt e escrever no mesmo
+			// permite terminar par-shell e todos os terminais ordeiramente
+
+		} else {
+			fsync(fp);
+			write(fp, bufer, strlen(bufer));
+			puts("success writing");
 		}
+/* Write each string in turn */
 	}
 	return 0;
 }

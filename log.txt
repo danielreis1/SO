@@ -7204,3 +7204,342 @@ total execution time: 33 s
 iteracao 1049
 pid: 12048 execution time: 0 s
 total execution time: 33 s
+iteracao 1050
+pid: 3853 execution time: 0 s
+total execution time: 33 s
+iteracao 1051
+pid: 3854 execution time: 0 s
+total execution time: 33 s
+iteracao 1052
+pid: 3901 execution time: 0 s
+total execution time: 33 s
+iteracao 1053
+pid: 3903 execution time: 0 s
+total execution time: 33 s
+iteracao 1054
+pid: 4014 execution time: 0 s
+total execution time: 33 s
+iteracao 1055
+pid: 5008 execution time: 1 s
+total execution time: 34 s
+iteracao 1056
+pid: 5009 execution time: 0 s
+total execution time: 34 s
+iteracao 1057
+pid: 5010 execution time: 0 s
+total execution time: 34 s
+iteracao 1058
+pid: 5011 execution time: 0 s
+total execution time: 34 s
+iteracao 1059
+pid: 5012 execution time: 0 s
+total execution time: 34 s
+iteracao 1060
+pid: 5013 execution time: 0 s
+total execution time: 34 s
+iteracao 1061
+pid: 5014 execution time: 0 s
+total execution time: 34 s
+iteracao 1062
+pid: 5015 execution time: 1 s
+total execution time: 35 s
+iteracao 1063
+pid: 5016 execution time: 0 s
+total execution time: 35 s
+iteracao 1064
+pid: 5840 execution time: 0 s
+total execution time: 35 s
+iteracao 1065
+pid: 5841 execution time: 0 s
+total execution time: 35 s
+iteracao 1066
+pid: 5842 execution time: 0 s
+total execution time: 35 s
+iteracao 1067
+pid: 5918 execution time: 0 s
+total execution time: 35 s
+iteracao 1068
+pid: 5919 execution time: 0 s
+total execution time: 35 s
+iteracao 1069
+pid: 5965 execution time: 0 s
+total execution time: 35 s
+iteracao 1070
+pid: 5966 execution time: 0 s
+total execution time: 35 s
+iteracao 1071
+pid: 5969 execution time: 1 s
+total execution time: 36 s
+iteracao 1072
+pid: 6012 execution time: 1 s
+total execution time: 37 s
+iteracao 1073
+pid: 6034 execution time: 0 s
+total execution time: 37 s
+iteracao 1074
+pid: 6066 execution time: 0 s
+total execution time: 37 s
+iteracao 1075
+pid: 6155 execution time: 0 s
+total execution time: 37 s
+iteracao 1076
+pid: 6156 execution time: 0 s
+total execution time: 37 s
+iteracao 1077
+pid: 6157 execution time: 0 s
+total execution time: 37 s
+iteracao 1078
+pid: 6158 execution time: 0 s
+total execution time: 37 s
+iteracao 1079
+pid: 6604 execution time: 0 s
+total execution time: 37 s
+iteracao 1080
+pid: 6605 execution time: 0 s
+total execution time: 37 s
+iteracao 1081
+pid: 6606 execution time: 0 s
+total execution time: 37 s
+iteracao 1082
+pid: 6627 execution time: 0 s
+total execution time: 37 s
+iteracao 1083
+pid: 6670 execution time: 0 s
+total execution time: 37 s
+iteracao 1084
+pid: 6671 execution time: 0 s
+total execution time: 37 s
+iteracao 1085
+pid: 6797 execution time: 0 s
+total execution time: 37 s
+iteracao 1086
+pid: 6840 execution time: 0 s
+total execution time: 37 s
+iteracao 1087
+pid: 6841 execution time: 0 s
+total execution time: 37 s
+iteracao 1088
+pid: 6842 execution time: 0 s
+total execution time: 37 s
+iteracao 1089
+pid: 6891 execution time: 0 s
+total execution time: 37 s
+iteracao 1090
+pid: 6892 execution time: 0 s
+total execution time: 37 s
+iteracao 1091
+pid: 6928 execution time: 0 s
+total execution time: 37 s
+iteracao 1092
+pid: 6929 execution time: 0 s
+total execution time: 37 s
+iteracao 1093
+pid: 6930 execution time: 0 s
+total execution time: 37 s
+iteracao 1094
+pid: 6931 execution time: 0 s
+total execution time: 37 s
+iteracao 1095
+pid: 6932 execution time: 0 s
+total execution time: 37 s
+iteracao 1096
+pid: 6933 execution time: 0 s
+total execution time: 37 s
+iteracao 1097
+pid: 7118 execution time: 0 s
+total execution time: 37 s
+iteracao 1098
+pid: 7119 execution time: 0 s
+total execution time: 37 s
+iteracao 1099
+pid: 7178 execution time: 0 s
+total execution time: 37 s
+iteracao 1100
+pid: 7237 execution time: 0 s
+total execution time: 37 s
+iteracao 1101
+pid: 7238 execution time: 0 s
+total execution time: 37 s
+iteracao 1102
+pid: 7239 execution time: 0 s
+total execution time: 37 s
+iteracao 1103
+pid: 7290 execution time: 0 s
+total execution time: 37 s
+iteracao 1104
+pid: 7291 execution time: 0 s
+total execution time: 37 s
+iteracao 1105
+pid: 7292 execution time: 0 s
+total execution time: 37 s
+iteracao 1106
+pid: 7293 execution time: 0 s
+total execution time: 37 s
+iteracao 1107
+pid: 7313 execution time: 0 s
+total execution time: 37 s
+iteracao 1108
+pid: 7361 execution time: 0 s
+total execution time: 37 s
+iteracao 1109
+pid: 7362 execution time: 0 s
+total execution time: 37 s
+iteracao 1110
+pid: 7365 execution time: 0 s
+total execution time: 37 s
+iteracao 1111
+pid: 7427 execution time: 1 s
+total execution time: 38 s
+iteracao 1112
+pid: 7431 execution time: 0 s
+total execution time: 38 s
+iteracao 1113
+pid: 7538 execution time: 0 s
+total execution time: 38 s
+iteracao 1114
+pid: 7641 execution time: 0 s
+total execution time: 38 s
+iteracao 1115
+pid: 7642 execution time: 0 s
+total execution time: 38 s
+iteracao 1116
+pid: 7664 execution time: 0 s
+total execution time: 38 s
+iteracao 1117
+pid: 7665 execution time: 0 s
+total execution time: 38 s
+iteracao 1118
+pid: 7976 execution time: 0 s
+total execution time: 38 s
+iteracao 1119
+pid: 7977 execution time: 0 s
+total execution time: 38 s
+iteracao 1120
+pid: 7978 execution time: 1 s
+total execution time: 39 s
+iteracao 1121
+pid: 7979 execution time: 0 s
+total execution time: 39 s
+iteracao 1122
+pid: 7980 execution time: 0 s
+total execution time: 39 s
+iteracao 1123
+pid: 7981 execution time: 0 s
+total execution time: 39 s
+iteracao 1124
+pid: 8059 execution time: 0 s
+total execution time: 39 s
+iteracao 1125
+pid: 8060 execution time: 0 s
+total execution time: 39 s
+iteracao 1126
+pid: 8061 execution time: 0 s
+total execution time: 39 s
+iteracao 1127
+pid: 8062 execution time: 0 s
+total execution time: 39 s
+iteracao 1128
+pid: 8063 execution time: 0 s
+total execution time: 39 s
+iteracao 1129
+pid: 8064 execution time: 0 s
+total execution time: 39 s
+iteracao 1130
+pid: 8065 execution time: 0 s
+total execution time: 39 s
+iteracao 1131
+pid: 8066 execution time: 0 s
+total execution time: 39 s
+iteracao 1132
+pid: 8067 execution time: 0 s
+total execution time: 39 s
+iteracao 1133
+pid: 8068 execution time: 0 s
+total execution time: 39 s
+iteracao 1134
+pid: 8069 execution time: 0 s
+total execution time: 39 s
+iteracao 1135
+pid: 8070 execution time: 0 s
+total execution time: 39 s
+iteracao 1136
+pid: 8071 execution time: 0 s
+total execution time: 39 s
+iteracao 1137
+pid: 8072 execution time: 0 s
+total execution time: 39 s
+iteracao 1138
+pid: 8073 execution time: 0 s
+total execution time: 39 s
+iteracao 1139
+pid: 8074 execution time: 1 s
+total execution time: 40 s
+iteracao 1140
+pid: 8075 execution time: 0 s
+total execution time: 40 s
+iteracao 1141
+pid: 8076 execution time: 0 s
+total execution time: 40 s
+iteracao 1142
+pid: 8077 execution time: 0 s
+total execution time: 40 s
+iteracao 1143
+pid: 8078 execution time: 0 s
+total execution time: 40 s
+iteracao 1144
+pid: 8079 execution time: 0 s
+total execution time: 40 s
+iteracao 1145
+pid: 8080 execution time: 0 s
+total execution time: 40 s
+iteracao 1146
+pid: 8081 execution time: 0 s
+total execution time: 40 s
+iteracao 1147
+pid: 8082 execution time: 0 s
+total execution time: 40 s
+iteracao 1148
+pid: 8083 execution time: 0 s
+total execution time: 40 s
+iteracao 1149
+pid: 8143 execution time: 0 s
+total execution time: 40 s
+iteracao 1150
+pid: 8267 execution time: 0 s
+total execution time: 40 s
+iteracao 1151
+pid: 8268 execution time: 0 s
+total execution time: 40 s
+iteracao 1152
+pid: 8288 execution time: 0 s
+total execution time: 40 s
+iteracao 1153
+pid: 8289 execution time: 0 s
+total execution time: 40 s
+iteracao 1154
+pid: 8584 execution time: 0 s
+total execution time: 40 s
+iteracao 1155
+pid: 8585 execution time: 0 s
+total execution time: 40 s
+iteracao 1156
+pid: 8587 execution time: 0 s
+total execution time: 40 s
+iteracao 1157
+pid: 8648 execution time: 0 s
+total execution time: 40 s
+iteracao 1158
+pid: 8649 execution time: 0 s
+total execution time: 40 s
+iteracao 1159
+pid: 8650 execution time: 0 s
+total execution time: 40 s
+iteracao 1160
+pid: 8651 execution time: 0 s
+total execution time: 40 s
+iteracao 1161
+pid: 8756 execution time: 0 s
+total execution time: 40 s
+iteracao 1162
+pid: 8815 execution time: 0 s
+total execution time: 40 s
