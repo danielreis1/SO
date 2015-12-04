@@ -1,5 +1,0 @@
-fibonacci 10000
-fibonacci 12543
-fibonacci 12344
-fibonacci 10000
-exit

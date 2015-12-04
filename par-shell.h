@@ -146,6 +146,15 @@ void iterationSearch(FILE *fp) {
 	fprintf(fp,"iteracao %d\n", ++iteration);
 }
 
+void iterationSearch(FILE *fp) {
+	rewind(fp);
+	while(fgets(buffer, MAXBUFFER, fp)!= NULL) {
+		sscanf(buffer, " iteracao %d ",&iteration);
+		sscanf(buffer, "total execution time: %d s ", &totaltime);
+	}
+	fprintf(fp,"iteracao %d\n", ++iteration);
+}
+
 /* Adds end process information to the file  */
 void writeEndFile(FILE *fp, int execTime) {
 	int total = execTime + totaltime;

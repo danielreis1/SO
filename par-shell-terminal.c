@@ -30,9 +30,10 @@ int main(int argc, char * argv[]) {
 				fprintf(stderr,"Error opening file");
 				exit(EXIT_FAILURE);
 			}
-			iterationSearch(fp);
+			iterationSearch(log);
 			// prints tempo total em execucao
 			printf("%d\n", totaltime);
+			fileClose(log);
 
 			// imprime no ecra onde corre o par-shell-terminal
 
